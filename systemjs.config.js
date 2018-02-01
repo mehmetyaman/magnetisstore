@@ -22,10 +22,14 @@
             '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-
+            '@ng-bootstrap/ng-bootstrap': 'node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
             // other libraries
             'rxjs': 'npm:rxjs',
-            'tslib': 'npm:tslib/tslib.js'
+            'tslib': 'npm:tslib/tslib.js',
+
+            // Add fontawesome this line (1/2)
+            'angular2-fontawesome': 'node_modules/angular2-fontawesome',
+            '@qontu/ngx-inline-editor': 'node_modules/@qontu/ngx-inline-editor/ngx-inline-editor.umd.js',
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -35,7 +39,9 @@
             },
             rxjs: {
                 defaultExtension: 'js'
-            }
+            },
+            // Add fontawesome this line (2/2)
+            'angular2-fontawesome': { defaultExtension: 'js' }
         }
     });
 })(this);

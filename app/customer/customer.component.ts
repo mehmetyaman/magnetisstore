@@ -72,7 +72,7 @@ export class CustomerComponent implements OnInit {
     }
 
     onSearchChange(searchValue: string) {
-        return this.http.get('http://localhost:8080/customer/search?searchText=' + searchValue).subscribe(
+        return this.http.get('http://localhost:8080/user/search?searchText=' + searchValue).subscribe(
             result => this.searchList = result
         );
     }

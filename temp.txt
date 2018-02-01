@@ -1,0 +1,42 @@
+
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="/customer" class="active">Customer</a></li>
+    <li class="active">Data</li>
+</ol>
+
+<div class="col-md-6 col-md-offset-3">
+    <h2>Search Customer</h2>
+    <input [(ngModel)]="searchText" placeholder="Search Here...">
+
+    <span *ngFor="let customer of searchList | filter:searchText; let i = index"
+          [attr.data-index]="i">
+        <button class="btn btn-default navbar-btn"
+                attr.data-target="{{i}}"
+                (click)="toogle(i)">{{customer.firstName}} {{customer.lastName}}
+        </button>
+
+        <div class="collapse navbar" id="{{i}}">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">First Name</span>
+                <input type="text" class="form-control" value="{{customer.firstName}}" placeholder="First Name"
+                       aria-describedby="basic-addon1">
+            </div>
+             <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Last Name</span>
+                <input type="text" class="form-control" value="{{customer.lastName}}" placeholder="Last Name"
+                       aria-describedby="basic-addon1">
+            </div>
+             <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Birth Date</span>
+                <input type="text" class="form-control" value="{{customer.birthDate}}" placeholder="Birth Date"
+                       aria-describedby="basic-addon1">
+            </div>
+             <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Points</span>
+                <input type="text" class="form-control" value="{{customer.points}}" placeholder="Points"
+                       aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </span>
+</div>

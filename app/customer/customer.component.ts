@@ -5,7 +5,6 @@ import {AlertService, CustomerService, UserService} from '../_services/index';
 import {HttpClient} from "@angular/common/http";
 import {Customer} from "../_models";
 
-
 @Component({
     moduleId: module.id,
     templateUrl: 'customer.component.html'
@@ -16,23 +15,23 @@ export class CustomerComponent implements OnInit {
     model: any = {};
     loading = false;
     searchList: any = [];
-    email:string;
-    birthDate:Date;
-    firstName:string;
-    lastName:string;
+    email: string;
+    birthDate: Date;
+    firstName: string;
+    lastName: string;
     orders: any = [];
-    points:number;
-    phoneNumber:any = {};
-    id:any = {};
+    points: number;
+    phoneNumber: any = {};
+    id: any = {};
 
     transfer(customer: Customer): void {
-       this.firstName = customer.firstName;
-       this.lastName = customer.lastName;
-       this.points = customer.points;
-       this.phoneNumber = customer.phoneNumber;
-       this.birthDate = customer.birthDate;
-       this.email = customer.email;
-       this.id = customer.id;
+        this.firstName = customer.firstName;
+        this.lastName = customer.lastName;
+        this.points = customer.points;
+        this.phoneNumber = customer.phoneNumber;
+        this.birthDate = customer.birthDate;
+        this.email = customer.email;
+        this.id = customer.id;
     }
 
     save(): void {
@@ -50,9 +49,7 @@ export class CustomerComponent implements OnInit {
     }
 
     ngOnInit(): any {
-        return this.http.get('http://localhost:8080/customer').subscribe(
-            result => this.searchList = result
-        );
+
     }
 
     goHome() {
@@ -72,8 +69,13 @@ export class CustomerComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 });
-
-
     }
+
+    onSearchChange(searchValue: string) {
+        return this.http.get('http://localhost:8080/customer/search?searchText=' + searchValue).subscribe(
+            result => this.searchList = result
+        );
+    }
+
 
 }

@@ -1,0 +1,35 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="/user">User</a></li>
+    <li><a href="/product" class="active">Product</a></li>
+    <li><a href="/content">Content</a></li>
+    <li><a href="/category">Category</a></li>
+</ol>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Category Search</div>
+        <div class="panel-body">
+            <p></p>
+            <h2>Search</h2>
+            <input [(ngModel)]="searchSmthng" (input)="onSearchChange($event.target.value)" class="form-control">
+        </div>
+
+        <!-- Table -->
+        <table class="table table-hover">
+            <tr *ngFor="let cat of resultList | filter:searchSmthng;" (click)="transfer(cat)">
+                <th></th>
+                <td>
+                    <div class="input-group">
+                        <span class="label label-default">Name</span>
+                        <inline-editor type="text" [(ngModel)]="cat.name" (onSave)="saveEditable(cat)" name="name" size="8">
+                        </inline-editor>
+                    </div>
+                    <input [(ngModel)]="id" type="hidden" value="{{cat.id}}" placeholder="">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>

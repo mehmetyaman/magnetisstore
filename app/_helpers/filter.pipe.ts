@@ -9,7 +9,11 @@ export class FilterPipe implements PipeTransform {
         if (!searchText) return items;
         searchText = searchText.toLowerCase();
         return items.filter(it => {
-            if(it.firstName.includes(searchText) || it.lastName.includes(searchText) || it.phoneNumber.includes(searchText))
+            if((it.firstName !== undefined && it.firstName.toLowerCase().includes(searchText))
+                || (it.lastName !== undefined && it.lastName.toLowerCase().includes(searchText))
+                || (it.phoneNumber !== undefined && it.phoneNumber.toLowerCase().includes(searchText))
+                || (it.name !== undefined && it.name.toLowerCase().includes(searchText))
+                )
             return it;
         });
     }

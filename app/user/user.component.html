@@ -1,0 +1,73 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="/user">User</a></li>
+    <li><a href="/product" class="active">Product</a></li>
+    <li><a href="/content">Content</a></li>
+    <li><a href="/category">Category</a></li>
+</ol>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-body">
+            <p></p>
+            <button type="button" class="btn btn-primary" (click)="create()">Create New One</button>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Customer Search</div>
+        <div class="panel-body">
+            <p></p>
+            <h2>Search</h2>
+            <input [(ngModel)]="searchText" (input)="onSearchChange($event.target.value)" class="form-control">
+        </div>
+
+        <!-- Table -->
+        <table class="table table-hover">
+            <tr *ngFor="let usr of searchList | filter:searchText; let i = index" (click)="transfer(usr)">
+                <th></th>
+                <td>
+                    <div class="input-group">
+                        <span class="label label-default">First Name</span>
+                        <inline-editor [(ngModel)]="usr.firstName" type="text" (onSave)="saveEditable(usr)" name="firstName"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Last Name</span>
+                        <inline-editor [(ngModel)]="usr.lastName" type="text" (onSave)="saveEditable(usr)" name="lastName"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Points</span>
+                        <inline-editor [(ngModel)]="usr.points" type="number" (onSave)="saveEditable(usr)" name="points"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Birth Date</span>
+                        <inline-editor [(ngModel)]="usr.birth" type="date" (onSave)="saveEditable(usr)" name="birth"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">email</span>
+                        <inline-editor [(ngModel)]="usr.email" type="text" (onSave)="saveEditable(usr)" name="email"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">PhoneNumber</span>
+                        <inline-editor [(ngModel)]="usr.phoneNumber" type="text" (onSave)="saveEditable(usr)"
+                                       name="phoneNumber" size="8">
+                        </inline-editor>
+                    </div>
+                    <input [(ngModel)]="id" type="hidden" value="{{usr.id}}" placeholder="">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="/user">User</a></li>
+    <li><a href="/product" class="active">Product</a></li>
+    <li><a href="/content">Content</a></li>
+    <li><a href="/category">Category</a></li>
+</ol>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Product Search</div>
+        <div class="panel-body">
+            <p></p>
+            <h2>Search</h2>
+            <input [(ngModel)]="searchText" (input)="onSearchChange($event.target.value)" class="form-control">
+        </div>
+
+        <table class="table table-hover">
+            <tr *ngFor="let prod of searchList | filter:searchSmthng;" (click)="transfer(prod)">
+                <th></th>
+                <td>
+                    <div class="input-group">
+                        <span class="label label-default">Name</span>
+                        <inline-editor [(ngModel)]="prod.name" type="text" (onSave)="saveEditable(prod)" name="name"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Image Url</span>
+                        <inline-editor [(ngModel)]="prod.imageUrl" type="text" (onSave)="saveEditable(prod)" name="imageUrl"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Image Thumbnail Url</span>
+                        <inline-editor [(ngModel)]="prod.imageThumbnailUrl" type="text" (onSave)="saveEditable(prod)" name="imageThumbnailUrl"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Long Desc</span>
+                        <inline-editor [(ngModel)]="prod.longDesc" type="text" (onSave)="saveEditable(prod)" name="longDesc"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Short Desc</span>
+                        <inline-editor [(ngModel)]="prod.shortDesc" type="text" (onSave)="saveEditable(prod)" name="shortDesc"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Publish Date</span>
+                        <inline-editor [(ngModel)]="prod.publishDate" type="date" (onSave)="saveEditable(prod)" name="publishDate"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Cost</span>
+                        <inline-editor [(ngModel)]="prod.cost" type="text" (onSave)="saveEditable(prod)" name="cost"
+                                       size="8">
+                        </inline-editor>
+                    </div>
+                    <input [(ngModel)]="id" type="hidden" value="{{prod.id}}" placeholder="">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>

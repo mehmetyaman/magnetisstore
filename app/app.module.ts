@@ -9,15 +9,21 @@ import {fakeBackendProvider, JwtInterceptor} from './_helpers/index';
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
 
-import {AlertComponent} from './_directives/index';
 import {AuthGuard} from './_guards/index';
-import {AlertService, AuthenticationService, CustomerService, UserService} from './_services/index';
+
+import {AlertComponent} from './_directives/index';
 import {HomeComponent} from './home/index';
 import {LoginComponent} from './login/index';
 import {RegisterComponent} from './register/index';
-import {FilterPipe} from "./_helpers/filter.pipe";
-import {CustomerComponent} from "./customer/customer.component";
+import {UserComponent} from "./user/index";
+import {ProductComponent} from "./product/index";
+import {CategoryComponent} from "./category/index";
+
+import {ContentComponent} from "./content/index";
+
 import {InlineEditorModule} from '@qontu/ngx-inline-editor';
+import {AlertService, AuthenticationService, UserService, ProductService, CategoryService, ContentService} from './_services/index';
+import {FilterPipe} from "./_helpers/filter.pipe";
 
 @NgModule({
     imports: [
@@ -33,8 +39,11 @@ import {InlineEditorModule} from '@qontu/ngx-inline-editor';
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        CustomerComponent,
+        UserComponent,
+        ProductComponent,
+        CategoryComponent,
         RegisterComponent,
+        ContentComponent,
         FilterPipe
     ],
     exports: [FilterPipe],
@@ -43,7 +52,9 @@ import {InlineEditorModule} from '@qontu/ngx-inline-editor';
         AlertService,
         AuthenticationService,
         UserService,
-        CustomerService,
+        ProductService,
+        CategoryService,
+        ContentService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptor,
@@ -57,6 +68,5 @@ import {InlineEditorModule} from '@qontu/ngx-inline-editor';
 })
 
 export class AppModule {
-
 
 }

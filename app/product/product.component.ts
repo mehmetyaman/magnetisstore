@@ -1,49 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {AlertService, CustomerService, UserService} from '../_services/index';
+import {AlertService, UserService, ProductService} from '../_services/index';
 import {HttpClient} from "@angular/common/http";
-import {Customer} from "../_models";
+import {Product} from "../_models/product";
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'customer.component.html'
+    templateUrl: 'product.component.html'
 })
 
-export class CustomerComponent implements OnInit {
+export class ProductComponent implements OnInit {
 
     model: any = {};
     loading = false;
+
     searchList: any = [];
-    email: string;
-    birthDate: Date;
-    firstName: string;
-    lastName: string;
-    orders: any = [];
-    points: number;
-    phoneNumber: any = {};
     id: any = {};
 
-    transfer(customer: Customer): void {
-        this.firstName = customer.firstName;
-        this.lastName = customer.lastName;
-        this.points = customer.points;
-        this.phoneNumber = customer.phoneNumber;
-        this.birthDate = customer.birthDate;
-        this.email = customer.email;
-        this.id = customer.id;
+    transfer(product: Product): void {
+        this.id = product.id;
     }
 
     save(): void {
-        console.log(this.firstName);
-        console.log(this.lastName);
         console.log(this.id);
-        console.log(this.points);
     }
 
     constructor(private router: Router,
                 private userService: UserService,
-                private customerService: CustomerService,
+                private productService: ProductService,
                 private alertService: AlertService,
                 private http: HttpClient) {
     }
@@ -56,10 +41,10 @@ export class CustomerComponent implements OnInit {
         this.router.navigate(['']);
     }
 
-    customer() {
+    product() {
         this.loading = true;
 
-        this.userService.create(this.model)
+        this.productService.create(this.model)
             .subscribe(
                 data => {
                     this.alertService.success('Registration successful', true);
@@ -72,10 +57,21 @@ export class CustomerComponent implements OnInit {
     }
 
     onSearchChange(searchValue: string) {
-        return this.http.get('http://localhost:8080/user/search?searchText=' + searchValue).subscribe(
+        return this.http.get('http://localhost:8080/product/search?searchText=' + searchValue).subscribe(
             result => this.searchList = result
         );
     }
 
+    saveEditable(value: any) {
+        this.productService.update(value)
+            .subscribe(
+                data => {
+                    this.alertService.success('product update successful', true);
+                },
+                error => {
+                    this.alertService.error(error);
+                    return false;
+                });
+    }
 
 }

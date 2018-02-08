@@ -1,0 +1,50 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="/user">User</a></li>
+    <li><a href="/product" class="active">Product</a></li>
+    <li><a href="/content">Content</a></li>
+    <li><a href="/category">Category</a></li>
+</ol>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Content Search</div>
+        <div class="panel-body">
+            <p></p>
+            <h2>Search</h2>
+            <input [(ngModel)]="searchSmthng" (input)="onSearchChange($event.target.value)" class="form-control">
+        </div>
+
+        <!-- Table -->
+        <table class="table table-hover">
+            <tr *ngFor="let cont of resultList | filter:searchSmthng;" (click)="transfer(cont)">
+                <th></th>
+                <td>
+                    <div class="input-group">
+                        <span class="label label-default">Name</span>
+                        <inline-editor type="text" [(ngModel)]="cont.name" (onSave)="saveEditable(cont)" name="name" size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Visibility</span>
+                        <inline-editor type="checkbox" [(ngModel)]="cont.visible" (onSave)="saveEditable(cont)" name="visible" size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Initial Content</span>
+                        <inline-editor type="text" [(ngModel)]="cont.initialContent" (onSave)="saveEditable(cont)" name="initialcontent" size="8">
+                        </inline-editor>
+                    </div>
+                    <div class="input-group">
+                        <span class="label label-default">Content Type</span>
+                        <inline-editor type="select" [(ngModel)]="cont.contentType" [options]="contenttypeoptions" (onSave)="saveEditable(cont)" name="contentType" size="8">
+                        </inline-editor>
+                    </div>
+                    <input [(ngModel)]="id" type="hidden" value="{{cont.id}}" placeholder="">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
